@@ -1,0 +1,6 @@
+make clean;
+for I in {0..1111..11}; do
+	echo -n ${I};
+	echo -n " "; 
+	make string ARGS=\"${I}\";
+done
