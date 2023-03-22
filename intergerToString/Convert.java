@@ -1,10 +1,11 @@
 public class Convert {
 
-    public static final String[] placeValues = {"", " thousand ",  " million ", " billion ", " trillion "};
+    public static final String[] placeValues = {"", " thousand ",  " million ", " billion ", " trillion ", " quadrillion ", "quintillion ", " hextillion ", " septillion ", " octillion ", "nonillion ", "decillion ", " undecillion ", "duodecillion ", " tredecillion ", " quattuordecillion ", " quindecillion ", " hexdecillion ", " septendecillion ", " octodecillion ", " novemdecillion ", " vigintillion ", "unvigintilion ", " duovigintillion ", " trevigintillion ", " quattourvigintillion ", " quinvigintillion ", " hexvigintillion ", " septenvigintillion ", " octovigintillion ", " novemvigintillion ", " trigintillion ", " untrigintillion ", " duotrigintillion"};
     public static void main(String[] args) {
-        int num;
+        long num;
         try {
-            num = Integer.parseInt(args[0]);
+            num = Long.parseLong(args[0]);
+            // num = Integer.parseInt(args[0]);
             if (num == 0) {
                 System.out.println("zero");
             }
@@ -23,8 +24,8 @@ public class Convert {
         }
     }
 
-    public static String intToString(int num) {
-        String numStr = Integer.toString(num);
+    public static String intToString(long num) {
+        String numStr = Long.toString(num);
         String finalString = "";
         String[] numbers;
         for (int i = numStr.length()-1-3; i >= 0; i -= 3) {
