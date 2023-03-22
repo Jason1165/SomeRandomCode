@@ -1,14 +1,25 @@
-import java.util.*;
 public class Convert {
+
+    public static final String[] placeValues = {"", " thousand ",  " million ", " billion ", " trillion "};
     public static void main(String[] args) {
         int num;
         try {
             num = Integer.parseInt(args[0]);
-            System.out.println(intToString(num));
+            if (num == 0) {
+                System.out.println("zero");
+            }
+            else {
+                System.out.println(intToString(num));
+            }
         }
         catch (Exception ex) {
-            ex.printStackTrace();
-            System.out.println("An invalid number was entered: " + args[0] + ".\nProper Format: make string ARGS=\"NUMBER\"");
+            // ex.printStackTrace();
+            if (args[0].length() >= 10) {
+                System.out.println("The number entered: " + args[0] + " is either too large or not a valid number.\nProper Format: make string ARGS=\"NUMBER\"");
+            }
+            else { 
+                System.out.println("An invalid number was entered: " + args[0] + ".\nProper Format: make string ARGS=\"NUMBER\"");
+            }
         }
     }
 
@@ -22,12 +33,16 @@ public class Convert {
         numbers = numStr.split(":");
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = hundreds(Integer.parseInt(numbers[i]));
-            if (numbers[i].charAt(numbers[i].length()-1) == '-' || numbers[i].charAt(numbers[i].length()-1) == ' ') {
+            if (numbers[i].length() > 0 && (numbers[i].charAt(numbers[i].length()-1) == '-' || numbers[i].charAt(numbers[i].length()-1) == ' ')) {
                 numbers[i] = numbers[i].substring(0, numbers[i].length()-1);
             }
         }
-        return Arrays.toString(numbers);
-        // return finalString;
+
+        for (int i = numbers.length -1; i >= 0; i--) {
+            int n = numbers.length - 1 - i;
+            finalString = numbers[i] + placeValues[n] + finalString;
+        }
+        return finalString;
     }
 
     public static String hundreds(int num) {
