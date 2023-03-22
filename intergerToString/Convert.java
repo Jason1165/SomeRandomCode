@@ -1,28 +1,33 @@
+import java.util.*;
 public class Convert {
     public static void main(String[] args) {
         int num;
         try {
             num = Integer.parseInt(args[0]);
-            if (num == 0) {
-                System.out.println("zero");
-            }
-            else {
-                String str = hundreds(num);
-                if (str.charAt(str.length()-1) == '-') {
-                    str = str.substring(0, str.length()-1);
-                }
-                System.out.println(str);
-            }
+            System.out.println(intToString(num));
         }
         catch (Exception ex) {
-            // ex.printStackTrace();
-            System.out.println(args[0]);
-            System.out.println("An invalid number was entered.\nProper Format: make string ARGS=\"NUMBER\"");
+            ex.printStackTrace();
+            System.out.println("An invalid number was entered: " + args[0] + ".\nProper Format: make string ARGS=\"NUMBER\"");
         }
     }
 
     public static String intToString(int num) {
-        return "";
+        String numStr = Integer.toString(num);
+        String finalString = "";
+        String[] numbers;
+        for (int i = numStr.length()-1-3; i >= 0; i -= 3) {
+            numStr = numStr.substring(0, i+1) + ":" + numStr.substring(i+1);
+        }
+        numbers = numStr.split(":");
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = hundreds(Integer.parseInt(numbers[i]));
+            if (numbers[i].charAt(numbers[i].length()-1) == '-' || numbers[i].charAt(numbers[i].length()-1) == ' ') {
+                numbers[i] = numbers[i].substring(0, numbers[i].length()-1);
+            }
+        }
+        return Arrays.toString(numbers);
+        // return finalString;
     }
 
     public static String hundreds(int num) {
