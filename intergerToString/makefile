@@ -5,4 +5,4 @@ Convert.class:
 	@javac Convert.java
 
 clean:
-	rm *.class
+	@rm *.class
