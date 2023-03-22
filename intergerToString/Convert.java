@@ -41,7 +41,9 @@ public class Convert {
 
         for (int i = numbers.length -1; i >= 0; i--) {
             int n = numbers.length - 1 - i;
-            finalString = numbers[i] + placeValues[n] + finalString;
+            if (numbers[i].length() > 0) {
+                finalString = numbers[i] + placeValues[n] + finalString;
+            }
         }
         return finalString;
     }
